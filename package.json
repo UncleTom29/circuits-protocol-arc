@@ -1,0 +1,52 @@
+{
+  "name": "circuits-protocol-arc",
+  "version": "1.0.0",
+  "description": "Circuits Protocol - Autonomous AI Agent Commerce, Circle Agent Stack & Nanopayments on Arc Mainnet",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "compile": "hardhat compile",
+    "build": "hardhat compile && tsc -p tsconfig.build.json",
+    "test": "hardhat test",
+    "verify:mainnet": "hardhat run scripts/verify-arc-mainnet.ts --network arcMainnet",
+    "demo:x402": "ts-node scripts/demo-x402-payment.ts",
+    "demo:gateway": "ts-node scripts/demo-gateway-nanopayment.ts",
+    "deploy:arc": "hardhat run scripts/deploy-arc-mainnet.ts --network arcMainnet",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "arc-network",
+    "arc-mainnet",
+    "circle-agent-stack",
+    "circle-agent-wallets",
+    "circle-gateway",
+    "nanopayments",
+    "x402",
+    "autonomous-agents",
+    "usdc-gas"
+  ],
+  "author": "Tomiwa Adeyemi <adeyemitomiwa7@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@circle-fin/developer-controlled-wallets": "^10.8.0",
+    "viem": "^2.23.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-chai-matchers": "^2.0.8",
+    "@nomicfoundation/hardhat-ethers": "^3.0.8",
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@openzeppelin/contracts": "^5.2.0",
+    "@openzeppelin/contracts-upgradeable": "^5.2.0",
+    "@openzeppelin/hardhat-upgrades": "^3.9.1",
+    "@types/chai": "^4.3.20",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^22.13.1",
+    "chai": "^4.5.0",
+    "dotenv": "^16.4.7",
+    "ethers": "^6.13.5",
+    "hardhat": "^2.28.6",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  }
+}
