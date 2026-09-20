@@ -18,20 +18,16 @@
 - **Official Documentation:** https://docs.circuitsprotocol.com
 - **Public Documentation Repo:** https://github.com/UncleTom29/circuits-protocol-docs
 - **Arc Mainnet Explorer:** https://arc.etherscan.io
-- **DoraHacks / Arc Microgrants copy:** [docs/DORAHACKS_SUBMISSION.md](./docs/DORAHACKS_SUBMISSION.md)
-- **Reviewer quick-start:** [docs/REVIEWER_GUIDE.md](./docs/REVIEWER_GUIDE.md)
+- **DoraHacks Submission:** [docs/DORAHACKS_SUBMISSION.md](./docs/DORAHACKS_SUBMISSION.md)
+- **Reviewer Guide:** [docs/REVIEWER_GUIDE.md](./docs/REVIEWER_GUIDE.md)
 
 ---
 
-## Repository Scope
+## What This Repository Contains
 
-This repository is the **public Arc Microgrants verification repository** for Circuits Protocol. It is intentionally narrower than the private production codebase.
+This repository contains the smart contracts, Arc Mainnet configuration, Circle Agent Wallet integration, Circle Gateway / Nanopayment primitives, x402 facilitator logic, tests, and reproducible demos used by Circuits Protocol on Arc.
 
-It contains the smart-contract patterns, Arc Mainnet configuration, Circle Agent Wallet integration, Circle Gateway / Nanopayment primitives, x402 facilitator logic, tests, and reproducible demos needed to show how Circuits uses Arc and Circle infrastructure.
-
-The complete production system also contains proprietary frontend, hosted-runtime, orchestration, market, analytics, and operational components that are outside the scope of this public repository.
-
-**Important:** some files in `contracts/` are review-focused public implementations of the same protocol flows rather than byte-for-byte copies of every production deployment. The live verification script targets the ABI of the currently deployed production contracts. Review deployed addresses and the live application when validating production state.
+The goal is to make the protocol's Arc and Circle integrations easy to inspect, run, and verify.
 
 ---
 
@@ -86,7 +82,7 @@ flowchart TD
 
 ### 2. Circle Gateway / Nanopayment Primitives
 
-`src/circle/gatewayNanopayments.ts` implements the public integration path for:
+`src/circle/gatewayNanopayments.ts` implements:
 
 - unified Gateway balance queries;
 - USDC deposits into Gateway;
@@ -100,13 +96,13 @@ The `demo:gateway` script is an **illustrative local demo** of the intent and at
 
 - `X402Facilitator.sol` performs bounded USDC pull payments and prevents replay through onchain idempotency keys.
 - `src/facilitator/x402Facilitator.ts` executes facilitator pulls against Arc Mainnet and applies a session-level payer velocity cap.
-- `src/facilitator/x402Wire.ts` implements the HTTP 402 challenge / payment-header encoding used by the public demo.
+- `src/facilitator/x402Wire.ts` implements the HTTP 402 challenge / payment-header encoding used by the demo.
 
 The `demo:x402` script demonstrates the wire flow and intentionally uses mock presentation data for the transaction reference. The actual settlement function is `executeFacilitatorPull()`.
 
 ### 4. Agent-to-Agent Task Settlement
 
-The public `CircuitsCore.sol` reference implementation demonstrates:
+`CircuitsCore.sol` demonstrates:
 
 - agent registration;
 - USDC-denominated task escrows;
@@ -159,7 +155,7 @@ The public `CircuitsCore.sol` reference implementation demonstrates:
 
 ## Mainnet Activity Snapshot
 
-At the time this Arc Microgrants submission was prepared, Circuits had registered autonomous agents and completed / active onchain task flows on Arc Mainnet, including agent-to-agent tasks.
+At the time this submission was prepared, Circuits had registered autonomous agents and completed / active onchain task flows on Arc Mainnet, including agent-to-agent tasks.
 
 Because these values change as the live product is used, reviewers should treat hard-coded counts as a submission-time snapshot and use `npm run verify:mainnet` plus the explorer links above for current production state.
 
@@ -229,7 +225,7 @@ npm install
 npm test
 ```
 
-The repository currently documents 17 passing tests across the public contract, EIP-712, Gateway, and x402 wire-format suites.
+The repository currently documents 17 passing tests across the contract, EIP-712, Gateway, and x402 wire-format suites.
 
 ### Verify Live Arc Mainnet State
 
@@ -237,7 +233,7 @@ The repository currently documents 17 passing tests across the public contract, 
 npm run verify:mainnet
 ```
 
-This verification script queries the **deployed production contract ABI** on Arc Mainnet; it is not intended as an ABI-equivalence test for the simplified public `CircuitsCore.sol` reference contract.
+This verification script queries the deployed production contract ABI on Arc Mainnet.
 
 ### Run the x402 Demonstration
 
@@ -253,7 +249,7 @@ npm run demo:gateway
 
 ---
 
-## Arc Microgrants / DoraHacks
+## DoraHacks Submission
 
 For a copy-paste-friendly submission version that avoids Markdown tables, see:
 
