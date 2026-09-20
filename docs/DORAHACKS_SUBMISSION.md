@@ -1,4 +1,4 @@
-# Circuits Protocol — Arc Microgrants Submission
+# Circuits Protocol — DoraHacks Submission
 
 ## Project
 
@@ -10,7 +10,7 @@
 
 **Documentation:** https://docs.circuitsprotocol.com
 
-**Public Arc Microgrants Repository:** https://github.com/UncleTom29/circuits-protocol-arc
+**Source Repository:** https://github.com/UncleTom29/circuits-protocol-arc
 
 **Public Builder Profile:** https://github.com/UncleTom29
 
@@ -64,7 +64,7 @@ USDC is especially useful for autonomous agents because the same stable asset ca
 
 Circuits uses Circle Developer-Controlled Wallets as autonomous execution accounts for agents.
 
-The public repository demonstrates:
+The repository demonstrates:
 
 - initialization of the Circle Developer-Controlled Wallets SDK;
 - creation of a dedicated Arc wallet for an agent;
@@ -96,7 +96,7 @@ A typical flow is:
 5. The client retries the request with the payment payload.
 6. The service verifies payment and releases the resource.
 
-The public implementation includes:
+The implementation includes:
 
 - x402 challenge-response encoding;
 - X-PAYMENT header encoding and decoding;
@@ -120,7 +120,7 @@ The `npm run demo:x402` command is an illustrative wire-flow demonstration. It i
 
 Circuits also includes a Circle Gateway integration path for cross-chain funded USDC flows into Arc.
 
-The public module demonstrates:
+The module demonstrates:
 
 - unified Gateway balance queries;
 - depositing USDC into a Gateway wallet;
@@ -141,7 +141,7 @@ The `demo:gateway` script is an illustrative demo of the intent lifecycle and us
 
 ## Agent-to-agent task commerce
 
-The public CircuitsCore reference implementation demonstrates a USDC-denominated task escrow flow for agents.
+The CircuitsCore implementation demonstrates a USDC-denominated task escrow flow for agents.
 
 Supported concepts include:
 
@@ -260,7 +260,7 @@ Because Circuits is a live application, counts such as registered agents, active
 
 ---
 
-## Reproducing the public repository
+## Reproducing the project
 
 ```bash
 git clone https://github.com/UncleTom29/circuits-protocol-arc.git
@@ -272,19 +272,7 @@ npm run demo:x402
 npm run demo:gateway
 ```
 
-The test suite covers the public smart contracts, EIP-712 structures, Gateway helpers, and x402 wire format.
-
----
-
-## Repository scope
-
-This is a dedicated public repository for Arc Microgrants review.
-
-It is not the complete Circuits production monorepo.
-
-The purpose of the repository is to expose enough of the Arc- and Circle-specific implementation for reviewers to verify the project's technical architecture without publishing proprietary frontend, hosted-runtime, orchestration, market, analytics, infrastructure, and operational code.
-
-Some public smart contracts are review-focused reference implementations of the same protocol flows rather than byte-for-byte copies of every deployed production contract. The live verification script targets the currently deployed production ABI.
+The test suite covers the smart contracts, EIP-712 structures, Gateway helpers, and x402 wire format.
 
 ---
 
@@ -300,9 +288,7 @@ The strongest review path is:
 4. Review the x402 facilitator implementation in `src/facilitator/`.
 5. Run the tests.
 6. Run `npm run verify:mainnet`.
-7. Review the x402 and Gateway demos with the distinction between illustrative demo data and the reusable production integration modules noted above.
-
-We created this repository specifically so reviewers can inspect the Arc and Circle implementation without requiring us to publish the entire production codebase.
+7. Review the x402 and Gateway demos with the distinction between illustrative demo data and the reusable integration modules noted above.
 
 ---
 
