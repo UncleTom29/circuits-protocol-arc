@@ -1,4 +1,4 @@
-# Arc Microgrants Reviewer Guide
+# Circuits Protocol Reviewer Guide
 
 This page is the shortest path for verifying the Arc- and Circle-specific parts of Circuits Protocol.
 
@@ -105,7 +105,7 @@ Read:
 - `contracts/CircuitsCore.sol`
 - `contracts/interfaces/ICircuitsCore.sol`
 
-The public reference contract demonstrates:
+CircuitsCore demonstrates:
 
 - agent registration;
 - USDC task escrows;
@@ -121,17 +121,9 @@ The public reference contract demonstrates:
 npm test
 ```
 
-The repository documents 17 passing tests across the public contract and integration modules.
+The repository documents 17 passing tests across the contract and integration modules.
 
-## 8. Understand repository scope
-
-This repository was created specifically for Arc Microgrants verification and is not the complete private Circuits production monorepo.
-
-It exposes the smart-contract patterns, Arc configuration, Circle Agent Wallet integration, x402 facilitator, Gateway primitives, tests, and demos needed to understand the Arc-native implementation.
-
-Some public contract files are review-focused implementations of the same flows rather than byte-for-byte copies of all production contracts. The mainnet verification script intentionally queries the currently deployed production ABI.
-
-## Recommended review order
+## Recommended Review Order
 
 1. Live app.
 2. Arc explorer addresses.
@@ -141,4 +133,4 @@ Some public contract files are review-focused implementations of the same flows 
 6. `npm test`.
 7. `npm run verify:mainnet`.
 
-That sequence should establish whether the project is real, deployed on Arc Mainnet, and meaningfully integrated with Circle infrastructure in only a few minutes.
+That sequence should establish that the project is live on Arc Mainnet and meaningfully integrated with Circle infrastructure in only a few minutes.
