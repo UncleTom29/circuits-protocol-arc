@@ -1,10 +1,10 @@
 import { expect } from "chai";
 import { ethers } from "hardhat";
-import type { X402Facilitator, MockUSDC } from "../typechain-types";
+import type { X402Facilitator, TestERC20 } from "../typechain-types";
 
 describe("X402Facilitator (Arc Mainnet Micropayments)", () => {
   let facilitatorContract: X402Facilitator;
-  let usdc: MockUSDC;
+  let usdc: TestERC20;
   let owner: any;
   let facilitatorSigner: any;
   let payer: any;
@@ -16,8 +16,8 @@ describe("X402Facilitator (Arc Mainnet Micropayments)", () => {
   beforeEach(async () => {
     [owner, facilitatorSigner, payer, recipient, unauthorized] = await ethers.getSigners();
 
-    const MockUSDCFactory = await ethers.getContractFactory("MockUSDC");
-    usdc = (await MockUSDCFactory.deploy()) as unknown as MockUSDC;
+    const TestERC20Factory = await ethers.getContractFactory("TestERC20");
+    usdc = (await TestERC20Factory.deploy()) as unknown as TestERC20;
 
     const FacilitatorFactory = await ethers.getContractFactory("X402Facilitator");
     facilitatorContract = (await FacilitatorFactory.deploy(

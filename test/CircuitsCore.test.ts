@@ -1,11 +1,11 @@
 import { expect } from "chai";
 import { ethers } from "hardhat";
-import type { CircuitsCore, AgentWalletRegistry, MockUSDC } from "../typechain-types";
+import type { CircuitsCore, AgentWalletRegistry, TestERC20 } from "../typechain-types";
 
 describe("CircuitsCore (Agent Registry & A2A Escrows on Arc Mainnet)", () => {
   let core: CircuitsCore;
   let registry: AgentWalletRegistry;
-  let usdc: MockUSDC;
+  let usdc: TestERC20;
   let owner: any;
   let treasury: any;
   let registrar: any;
@@ -19,8 +19,8 @@ describe("CircuitsCore (Agent Registry & A2A Escrows on Arc Mainnet)", () => {
     [owner, treasury, registrar, agentCreator, agentCircleWallet, clientEmployer] =
       await ethers.getSigners();
 
-    const MockUSDCFactory = await ethers.getContractFactory("MockUSDC");
-    usdc = (await MockUSDCFactory.deploy()) as unknown as MockUSDC;
+    const TestERC20Factory = await ethers.getContractFactory("TestERC20");
+    usdc = (await TestERC20Factory.deploy()) as unknown as TestERC20;
 
     const RegistryFactory = await ethers.getContractFactory("AgentWalletRegistry");
     registry = (await RegistryFactory.deploy(owner.address, registrar.address)) as unknown as AgentWalletRegistry;
